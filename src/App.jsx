@@ -1,257 +1,558 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import './App.css';
 
-// Main App component
-const App = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+const skills = [
+  'Python',
+  'Java',
+  'C++',
+  'C',
+  'SQL / MySQL',
+  'Scikit-learn',
+  'TensorFlow',
+  'NLP',
+  'Pandas',
+  'NumPy',
+  'React.js',
+  'JavaScript',
+  'Git',
+  'GitHub',
+  'Supabase',
+];
 
-  // Function to render different sections based on currentPage state
-  const renderSection = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomeSection />;
-      case 'about':
-        return <AboutSection />;
-      case 'skills':
-        return <SkillsSection />;
-      case 'projects':
-        return <ProjectsSection />;
-      case 'contact':
-        return <ContactSection />;
-      default:
-        return <HomeSection />;
-    }
+const projects = [
+  {
+    title: 'EduGrant AI',
+    category: 'Full-Stack AI Platform',
+    description:
+      'An explainable education loan and scholarship eligibility platform with human-in-the-loop decision making, SHAP explanations and document verification.',
+    tech: ['React.js', 'FastAPI', 'Scikit-learn', 'XGBoost', 'SHAP'],
+  },
+  {
+    title: 'CrowdSense AI',
+    category: 'AI-Based Crowd Prediction',
+    description:
+      'A system designed to predict crowd count and classify crowd risk based on location, time, historical data, weather and event information.',
+    tech: ['Python', 'React.js', 'Supabase', 'Machine Learning'],
+  },
+  {
+    title: 'House Price Prediction',
+    category: 'End-to-End ML Pipeline',
+    description:
+      'An end-to-end machine learning pipeline covering data ingestion, preprocessing, feature engineering and Random Forest model training.',
+    tech: ['Python', 'Scikit-learn', 'Random Forest', 'Pandas'],
+  },
+  {
+    title: 'Rockfall Prediction System',
+    category: 'Environmental ML',
+    description:
+      'A time-series risk prediction system using geological and environmental parameters with Random Forest and LSTM models.',
+    tech: ['Python', 'Random Forest', 'LSTM', 'Matplotlib'],
+  },
+];
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+    });
+
+    setMenuOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 font-inter">
-      {/* Navbar Component */}
-      <Navbar setCurrentPage={setCurrentPage} />
+    <div className="portfolio">
 
-      {/* Main Content Area */}
-      <main className="container mx-auto p-4 md:p-8">
-        {renderSection()}
+      {/* =====================================================
+          FUTURISTIC ANIMATED BACKGROUND
+          ===================================================== */}
+
+      <div className="background-effects" aria-hidden="true">
+        <div className="background-glow glow-one"></div>
+        <div className="background-glow glow-two"></div>
+        <div className="background-glow glow-three"></div>
+
+        <div className="grid-overlay"></div>
+
+        <div className="background-line line-1"></div>
+        <div className="background-line line-2"></div>
+        <div className="background-line line-3"></div>
+
+        <span className="particle particle-1"></span>
+        <span className="particle particle-2"></span>
+        <span className="particle particle-3"></span>
+        <span className="particle particle-4"></span>
+        <span className="particle particle-5"></span>
+        <span className="particle particle-6"></span>
+        <span className="particle particle-7"></span>
+        <span className="particle particle-8"></span>
+        <span className="particle particle-9"></span>
+        <span className="particle particle-10"></span>
+        <span className="particle particle-11"></span>
+        <span className="particle particle-12"></span>
+      </div>
+
+      {/* =====================================================
+          NAVBAR
+          ===================================================== */}
+
+      <nav className="navbar">
+        <div className="nav-container">
+
+          <button
+            className="logo"
+            onClick={() => scrollToSection('home')}
+          >
+            Ayushi<span>.</span>
+          </button>
+
+          <button
+            className="menu-button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+          >
+            ☰
+          </button>
+
+          <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
+
+            <button onClick={() => scrollToSection('home')}>
+              Home
+            </button>
+
+            <button onClick={() => scrollToSection('about')}>
+              About
+            </button>
+
+            <button onClick={() => scrollToSection('skills')}>
+              Skills
+            </button>
+
+            <button onClick={() => scrollToSection('projects')}>
+              Projects
+            </button>
+
+            <button onClick={() => scrollToSection('experience')}>
+              Experience
+            </button>
+
+            <button onClick={() => scrollToSection('contact')}>
+              Contact
+            </button>
+
+          </div>
+        </div>
+      </nav>
+
+      <main>
+
+        {/* =====================================================
+            HERO
+            ===================================================== */}
+
+        <section id="home" className="hero section">
+
+          <div className="hero-orbit orbit-one"></div>
+          <div className="hero-orbit orbit-two"></div>
+
+          <div className="hero-content">
+
+            <div className="hero-badge">
+              <span className="status-dot"></span>
+              AI / ML Engineer • Python Developer
+            </div>
+
+            <p className="hero-intro">
+              HELLO, I'M
+            </p>
+
+            <h1>
+              <span className="gradient-text">
+                Ayushi Jain
+              </span>
+            </h1>
+
+            <h2>
+              Building intelligent solutions with
+              <span> AI, ML & software.</span>
+            </h2>
+
+            <p className="hero-description">
+              B.Tech Computer Science student passionate about
+              machine learning, deep learning, NLP and building
+              practical AI-powered applications.
+            </p>
+
+            <div className="hero-buttons">
+
+              <button
+                className="primary-button"
+                onClick={() => scrollToSection('projects')}
+              >
+                <span>Explore My Work</span>
+                <span className="button-arrow">↗</span>
+              </button>
+
+              <a
+                className="secondary-button"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>View Resume</span>
+                <span className="button-arrow">↗</span>
+              </a>
+
+            </div>
+
+            <div className="hero-stats">
+
+              <div className="stat">
+                <strong>9.76</strong>
+                <span>Latest CGPA</span>
+              </div>
+
+              <div className="stat">
+                <strong>4+</strong>
+                <span>AI/ML Projects</span>
+              </div>
+
+              <div className="stat">
+                <strong>2</strong>
+                <span>Internships</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div className="scroll-indicator">
+            <span></span>
+            Scroll to explore
+          </div>
+
+        </section>
+
+        {/* =====================================================
+            ABOUT
+            ===================================================== */}
+
+        <section id="about" className="section glass-section">
+
+          <div className="section-heading">
+
+            <div className="section-number">
+              01. ABOUT
+            </div>
+
+            <p>GET TO KNOW ME</p>
+
+            <h2>
+              About <span>Me</span>
+            </h2>
+
+          </div>
+
+          <div className="about-content">
+
+            <div className="about-card">
+
+              <div className="card-glow"></div>
+
+              <p>
+                I'm Ayushi Jain, a B.Tech Computer Science &
+                Engineering student with a strong interest in
+                Artificial Intelligence and Machine Learning.
+              </p>
+
+              <p>
+                My work focuses on building practical AI systems,
+                machine learning pipelines and full-stack
+                applications that solve real-world problems.
+              </p>
+
+              <p>
+                I'm particularly interested in Deep Learning, NLP,
+                explainable AI and developing intelligent software
+                products.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* =====================================================
+            SKILLS
+            ===================================================== */}
+
+        <section id="skills" className="section">
+
+          <div className="section-heading">
+
+            <div className="section-number">
+              02. SKILLS
+            </div>
+
+            <p>WHAT I WORK WITH</p>
+
+            <h2>
+              Technical <span>Skills</span>
+            </h2>
+
+          </div>
+
+          <div className="skills-grid">
+
+            {skills.map((skill, index) => (
+              <div
+                className="skill-card"
+                key={skill}
+                style={{
+                  '--delay': `${index * 0.04}s`,
+                }}
+              >
+                <span className="skill-dot"></span>
+                {skill}
+              </div>
+            ))}
+
+          </div>
+
+        </section>
+
+        {/* =====================================================
+            PROJECTS
+            ===================================================== */}
+
+        <section id="projects" className="section">
+
+          <div className="section-heading">
+
+            <div className="section-number">
+              03. PROJECTS
+            </div>
+
+            <p>MY WORK</p>
+
+            <h2>
+              Featured <span>Projects</span>
+            </h2>
+
+          </div>
+
+          <div className="projects-grid">
+
+            {projects.map((project, index) => (
+              <article
+                className="project-card"
+                key={project.title}
+              >
+
+                <div className="project-number">
+                  0{index + 1}
+                </div>
+
+                <div className="project-top">
+
+                  <span className="project-category">
+                    {project.category}
+                  </span>
+
+                  <span className="project-icon">
+                    ↗
+                  </span>
+
+                </div>
+
+                <h3>
+                  {project.title}
+                </h3>
+
+                <p>
+                  {project.description}
+                </p>
+
+                <div className="tech-list">
+
+                  {project.tech.map((tech) => (
+                    <span key={tech}>
+                      {tech}
+                    </span>
+                  ))}
+
+                </div>
+
+              </article>
+            ))}
+
+          </div>
+
+        </section>
+
+        {/* =====================================================
+            EXPERIENCE
+            ===================================================== */}
+
+        <section
+          id="experience"
+          className="section glass-section"
+        >
+
+          <div className="section-heading">
+
+            <div className="section-number">
+              04. EXPERIENCE
+            </div>
+
+            <p>MY JOURNEY</p>
+
+            <h2>
+              Where I've <span>Worked</span>
+            </h2>
+
+          </div>
+
+          <div className="experience-timeline">
+
+            <div className="timeline-line"></div>
+
+            <div className="experience-card">
+
+              <div className="timeline-dot"></div>
+
+              <div className="experience-header">
+
+                <div>
+                  <span className="experience-date">
+                    2025
+                  </span>
+
+                  <h3>
+                    Machine Learning Intern
+                  </h3>
+
+                  <h4>
+                    OneStop AI
+                  </h4>
+                </div>
+
+                <span className="experience-arrow">
+                  ↗
+                </span>
+
+              </div>
+
+              <p>
+                Developed Python-based machine learning workflows
+                for classification and regression problems, worked
+                on data preprocessing and feature engineering, and
+                applied NLP and supervised/unsupervised learning
+                techniques.
+              </p>
+
+            </div>
+
+            <div className="experience-card">
+
+              <div className="timeline-dot"></div>
+
+              <div className="experience-header">
+
+                <div>
+                  <span className="experience-date">
+                    2 MONTHS
+                  </span>
+
+                  <h3>
+                    Software Engineering Intern
+                  </h3>
+
+                  <h4>
+                    Timeline ERP, Belapur
+                  </h4>
+                </div>
+
+                <span className="experience-arrow">
+                  ↗
+                </span>
+
+              </div>
+
+              <p>
+                Worked on ERP backend modules using Python scripting
+                for data workflows, debugging and performance
+                optimization while contributing to system
+                documentation.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* =====================================================
+            CONTACT
+            ===================================================== */}
+
+        <section
+          id="contact"
+          className="section contact-section"
+        >
+
+          <div className="section-heading">
+
+            <div className="section-number">
+              05. CONTACT
+            </div>
+
+            <p>LET'S CONNECT</p>
+
+            <h2>
+              Let's Build Something <span>Great</span>
+            </h2>
+
+          </div>
+
+          <p className="contact-description">
+            I'm always open to discussing interesting projects,
+            internships, collaborations and opportunities.
+          </p>
+
+          <a
+            className="primary-button contact-button"
+            href="mailto:ayushi1219jain@gmail.com"
+          >
+            <span>Get In Touch</span>
+            <span className="button-arrow">↗</span>
+          </a>
+
+        </section>
+
       </main>
 
-      {/* Footer Component */}
-      <Footer />
-    </div>
-  );
-};
+      {/* =====================================================
+          FOOTER
+          ===================================================== */}
 
-// Navbar Component
-const Navbar = ({ setCurrentPage }) => {
-  return (
-    <nav className="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-400">YourName</h1>
-        <div className="space-x-4">
-          <NavLink text="Home" page="home" setCurrentPage={setCurrentPage} />
-          <NavLink text="About" page="about" setCurrentPage={setCurrentPage} />
-          <NavLink text="Skills" page="skills" setCurrentPage={setCurrentPage} />
-          <NavLink text="Projects" page="projects" setCurrentPage={setCurrentPage} />
-          <NavLink text="Contact" page="contact" setCurrentPage={setCurrentPage} />
-        </div>
-      </div>
-    </nav>
-  );
-};
+      <footer>
 
-// NavLink Component (reusable for navbar items)
-const NavLink = ({ text, page, setCurrentPage }) => {
-  return (
-    <button
-      onClick={() => setCurrentPage(page)}
-      className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out hover:bg-gray-700"
-    >
-      {text}
-    </button>
-  );
-};
-
-// Home/Hero Section Component
-const HomeSection = () => {
-  return (
-    <section id="home" className="min-h-[calc(100vh-120px)] flex flex-col items-center justify-center text-center py-16 px-4">
-      <div className="mb-8">
-        {/* Placeholder image for your profile picture */}
-        <img
-          src="https://placehold.co/200x200/007bff/ffffff?text=Your+Photo"
-          alt="Your Profile"
-          className="rounded-full w-48 h-48 object-cover border-4 border-blue-500 shadow-xl"
-          onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/200x200/007bff/ffffff?text=Error"; }}
-        />
-      </div>
-      <h2 className="text-5xl font-extrabold text-white mb-4">Hi, I'm <span className="text-blue-400">Your Name</span></h2>
-      <p className="text-xl text-gray-300 max-w-2xl mb-8">
-        A passionate [Your Field/Role] building awesome web experiences.
-      </p>
-      <button
-        onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 ease-in-out hover:scale-105"
-      >
-        View My Work
-      </button>
-    </section>
-  );
-};
-
-// About Section Component
-const AboutSection = () => {
-  return (
-    <section id="about" className="py-16 px-4 bg-gray-800 rounded-lg shadow-xl mb-8">
-      <h2 className="text-4xl font-bold text-center text-white mb-8">About Me</h2>
-      <div className="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
-        <p className="mb-4">
-          Hello! I'm [Your Name], a [Your Field/Role] with a passion for [Your specific interests, e.g., creating intuitive user interfaces, solving complex problems with code]. I have [Number] years of experience in [Your primary technology/area, e.g., web development, data analysis, software engineering].
-        </p>
-        <p className="mb-4">
-          My journey into [Your Field] began when [brief story or motivation, e.g., I built my first website, I discovered the power of data]. I love learning new technologies and constantly challenging myself to build better, more efficient, and more impactful solutions.
-        </p>
         <p>
-          Outside of coding, you can find me [Your hobbies/interests, e.g., hiking, reading sci-fi, playing guitar]. I'm always open to new opportunities and collaborations, so feel free to reach out!
+          © {new Date().getFullYear()} Ayushi Jain
         </p>
-      </div>
-    </section>
-  );
-};
 
-// Skills Section Component
-const SkillsSection = () => {
-  const skills = [
-    'JavaScript', 'React', 'Node.js', 'Python', 'Tailwind CSS',
-    'HTML5', 'CSS3', 'Git', 'SQL', 'MongoDB', 'REST APIs', 'Cloud Platforms (AWS/GCP)'
-  ];
+        <p>
+          Built with React • Designed with curiosity ✦
+        </p>
 
-  return (
-    <section id="skills" className="py-16 px-4 mb-8">
-      <h2 className="text-4xl font-bold text-center text-white mb-8">My Skills</h2>
-      <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-        {skills.map((skill, index) => (
-          <span
-            key={index}
-            className="bg-blue-700 text-white px-5 py-2 rounded-full shadow-md text-lg font-medium transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-600"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-};
+      </footer>
 
-// Projects Section Component
-const ProjectsSection = () => {
-  const projects = [
-    {
-      title: 'Project Alpha',
-      description: 'A web application built with React and Node.js for managing tasks and projects efficiently.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-      link: '#', // Replace with actual project link
-      image: 'https://placehold.co/400x250/333/fff?text=Project+Alpha'
-    },
-    {
-      title: 'Data Analysis Dashboard',
-      description: 'An interactive dashboard developed using Python and Dash for visualizing large datasets.',
-      tech: ['Python', 'Dash', 'Pandas', 'Plotly'],
-      link: '#', // Replace with actual project link
-      image: 'https://placehold.co/400x250/333/fff?text=Project+Beta'
-    },
-    {
-      title: 'E-commerce Backend API',
-      description: 'A robust REST API for an e-commerce platform, handling user authentication, product management, and orders.',
-      tech: ['Node.js', 'Express', 'PostgreSQL', 'JWT'],
-      link: '#', // Replace with actual project link
-      image: 'https://placehold.co/400x250/333/fff?text=Project+Gamma'
-    }
-  ];
-
-  return (
-    <section id="projects" className="py-16 px-4 bg-gray-800 rounded-lg shadow-xl mb-8">
-      <h2 className="text-4xl font-bold text-center text-white mb-8">My Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
-        ))}
-      </div>
-    </section>
-  );
-};
-
-// Project Card Component
-const ProjectCard = ({ project }) => {
-  return (
-    <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform transition duration-300 ease-in-out hover:scale-105 border border-gray-700">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-48 object-cover"
-        onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x250/333/fff?text=Error"; }}
-      />
-      <div className="p-6">
-        <h3 className="text-2xl font-semibold text-blue-400 mb-2">{project.title}</h3>
-        <p className="text-gray-300 mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tech, index) => (
-            <span key={index} className="bg-gray-700 text-gray-300 text-sm px-3 py-1 rounded-full">
-              {tech}
-            </span>
-          ))}
-        </div>
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
-        >
-          View Project
-        </a>
-      </div>
     </div>
   );
-};
-
-// Contact Section Component
-const ContactSection = () => {
-  return (
-    <section id="contact" className="py-16 px-4 bg-gray-800 rounded-lg shadow-xl">
-      <h2 className="text-4xl font-bold text-center text-white mb-8">Contact Me</h2>
-      <div className="max-w-2xl mx-auto text-lg text-gray-300 text-center">
-        <p className="mb-6">
-          I'm always excited to connect with new people and discuss potential collaborations or interesting projects. Feel free to reach out!
-        </p>
-        <div className="space-y-4">
-          <p>
-            <span className="font-semibold text-blue-400">Email:</span>{' '}
-            <a href="mailto:your.email@example.com" className="text-blue-300 hover:underline">your.email@example.com</a>
-          </p>
-          <p>
-            <span className="font-semibold text-blue-400">LinkedIn:</span>{' '}
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline">linkedin.com/in/yourprofile</a>
-          </p>
-          <p>
-            <span className="font-semibold text-blue-400">GitHub:</span>{' '}
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline">github.com/yourusername</a>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Footer Component
-const Footer = () => {
-  return (
-    <footer className="bg-gray-800 text-gray-400 py-6 text-center mt-8 shadow-inner">
-      <div className="container mx-auto">
-        <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
-        <div className="flex justify-center space-x-4 mt-2">
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-white transition duration-300">LinkedIn</a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition duration-300">GitHub</a>
-          {/* Add more social links as needed */}
-        </div>
-      </div>
-    </footer>
-  );
-};
+}
 
 export default App;
