@@ -8,13 +8,26 @@
     sans-serif;
 
   color: #f8fafc;
-  background: #070711;
+  background: #05070d;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   min-width: 320px;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: #ffffff;
 }
